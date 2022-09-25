@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.core.view.get
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,25 +26,46 @@ class MainActivity : AppCompatActivity() {
 
 
         // Step 2: Save selected text size
-        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+        spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener
+        {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
                 position: Int,
                 id: Long
-            ) {
+            )
+
+                {
                 //val textSize = parent!!getItemAtPosition(Position)
-            }
+                val textSize = parent!!.getItemAtPosition(position).toString()
+                }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
         // Step 3: Change TextView to saved text size
-        changeButton.setOnClickListener {
+        //changeButton.setOnClickListener
+        changeButton.setOnClickListener()
+        {
+            val mParams = displayTextView.layoutParams as RelativeLayout.LayoutParams
+            val mParams2 = spinner.onItemSelectedListener.toString()
+            val mParams3 = displayTextView.textSize
+            mParams.apply {
+                //displayTextView.setTextSize(onMenuItemSelected(toString( )))
+                displayTextView.setTextSize(mParams3)
+
+            }
             //take the test value gotten
             //apply that text value to
             //textView.setTextSize(textvalue)
+             //println(displayTextView.text)
+            //displayTextView.setTextSize(spinner)
+
         }
 
     }
 }
+
+
+
+
